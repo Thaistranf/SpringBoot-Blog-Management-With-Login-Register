@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/users")
-public class APIUserController {
+public class UserController {
     @Autowired
     private UserRepository userRepository;
 
@@ -25,7 +25,7 @@ public class APIUserController {
     @PostMapping("/register")
     public String register(User user){
         userRepository.save(user);
-        return ("redirect:/user/login");
+        return ("redirect:/login");
     }
 
     @GetMapping("/login")
