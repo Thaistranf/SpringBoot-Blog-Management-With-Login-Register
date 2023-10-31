@@ -1,6 +1,9 @@
 package com.example.springbootblogmanagement.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "blog")
@@ -10,7 +13,8 @@ public class Blog {
     private Long id;
     private String content;     //Noi dung
     private String title;       //Tieu de
-    private String time;
+    @CreationTimestamp      //Tự động thêm thời gian hiện tại của hệ thống vào bảng CSDL mà không cần tạo trường time cho create.html
+    private Date time;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -18,14 +22,14 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(Long id, String content, String title, String time) {
+    public Blog(Long id, String content, String title, Date time) {
         this.id = id;
         this.content = content;
         this.title = title;
         this.time = time;
     }
 
-    public Blog(Long id, String content, String title, String time, User user) {
+    public Blog(Long id, String content, String title, Date time, User user) {
         this.id = id;
         this.content = content;
         this.title = title;
@@ -57,11 +61,11 @@ public class Blog {
         this.title = title;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
